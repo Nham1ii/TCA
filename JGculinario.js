@@ -1,16 +1,7 @@
-// INICIO
-
-console.log(`Inicio de jogo! O que deseja fazer?
-1. Ver menu
-2. Ver ingredientes
-3. Ver receitas
-4. Iniciar
-5. Cancelar`);
-
 // MENU
-
 const MENU = [
-    `Macarrao com salsicha
+    `MENU
+Macarrao com salsicha
 Carbonara
 Feijoada
 Lasanha
@@ -29,11 +20,14 @@ Sagu
 Bolinho de chuva
 Brigadeiro chocolate
 Brigadeiro branco
-Frango frito`
+Frango frito
+MODOS DE PREPARO
+Fritar
+Assar
+Cozir/Ferver`
 ]
 
 // INGREDIENTES
-
 const INGREDIENTES = [
     `espaguete
 feijao
@@ -67,7 +61,6 @@ farinha de rosca
 batata
 cebola
 sal`]
-
 // RECEITAS
 
 const RECEITAS = [
@@ -157,3 +150,12 @@ FRANGO FRITO
 frango + alho = frango temperado
 frango temperado + ovos + farinha de rosca + fritar = prato pronto`
 ]
+
+// INICIO
+console.log(`Inicio de jogo! O que deseja fazer?
+1. Ver menu e modos de preparo
+2. Ver ingredientes
+3. Ver receitas
+4. Iniciar
+5. Cancelar`);
+
