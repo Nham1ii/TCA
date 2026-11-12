@@ -208,20 +208,20 @@ function novoPrato() {
 
 // INICIO DO JOGO
 alert("Inicio de jogo!");
-let acao = "";
-while (acao !== "4" && acao !== null) {
-  acao = prompt(
+let acao = 0;
+while (acao !== 4 && acao !== null) {
+  acao = parseIntprompt(
     "O que deseja fazer?\n1. Iniciar (digitar ingredientes)\n2. Ver Receitas\n3. Criar receita\n4. Cancelar"
   );
 
-  if (acao == "1") {
+  if (acao == 1) {
     preparar();
-  } else if (acao == "2") {
+  } else if (acao == 2) {
     console.log("Receitas ja cadastradas");
     listaReceitas.forEach((receita) => receita.verReceita());
-  } else if (acao == "3") {
+  } else if (acao == 3) {
     novoPrato();
-  } else if (acao == "4" || acao === null) {
+  } else if (acao == 4 || acao === null) {
     alert("Voce encerrou o jogo! Fim!");
   } else {
     alert("Entrada invalida! Tente novamente.");
