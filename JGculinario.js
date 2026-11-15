@@ -18,48 +18,48 @@ const listaReceitas = [
   new Receita(
     "Macarrao com salsicha",
     ["espaguete", "agua", "sal", "molho", "salsicha"],
-    "ferver"
+    "ferver",
   ),
   new Receita(
     "Carbonara",
     ["espaguete", "agua", "ovos", "bacon", "queijo"],
-    "cozir/ferver"
+    "cozir/ferver",
   ),
   new Receita(
     "Feijoada",
     ["feijao", "agua", "louro", "alho", "carne", "bacon", "salsicha"],
-    "cozir/ferver"
+    "cozir/ferver",
   ),
   new Receita(
     "Lasanha",
     ["farinha", "ovos", "agua", "tomate", "alho", "oregano", "carne", "queijo"],
-    "assar"
+    "assar",
   ),
   new Receita("Panqueca", ["farinha", "ovos", "leite"], "fritar"),
   new Receita(
     "Stroggnoff",
     ["carne", "alho", "tomate", "creme de leite"],
-    "fritar"
+    "fritar",
   ),
   new Receita(
     "Stroggnoff de frango",
     ["frango", "alho", "tomate", "creme de leite"],
-    "fritar"
+    "fritar",
   ),
   new Receita(
     "Bolo de batata",
     ["batata", "agua", "ovos", "farinha", "queijo", "fermento"],
-    "assar"
+    "assar",
   ),
   new Receita(
     "Pao de queijo",
     ["farinha", "ovos", "queijo", "leite", "manteiga"],
-    "assar"
+    "assar",
   ),
   new Receita(
     "Bolinho de arroz",
     ["arroz", "agua", "ovos", "queijo", "farinha de rosca"],
-    "fritar"
+    "fritar",
   ),
   new Receita("Bife acebolado", ["carne", "cebola"], "fritar"),
   new Receita(
@@ -74,99 +74,78 @@ const listaReceitas = [
       "leite condensado",
       "manteiga",
     ],
-    "assar"
+    "assar",
   ),
   new Receita(
     "Bolo de chocolate",
     ["farinha", "ovos", "chocolate", "leite", "manteiga", "fermento"],
-    "assar"
+    "assar",
   ),
   new Receita(
     "Pizza",
     ["farinha", "agua", "fermento", "tomate", "queijo", "oregano"],
-    "assar"
+    "assar",
   ),
   new Receita("Omelete", ["ovos", "queijo", "tomate"], "fritar"),
   new Receita(
     "Sagu",
     ["sagu", "agua", "vinho", "canela em po"],
-    "cozir/ferver"
+    "cozir/ferver",
   ),
   new Receita(
     "Bolinho de chuva",
     ["farinha", "ovos", "leite", "fermento", "canela em po"],
-    "fritar"
+    "fritar",
   ),
   new Receita(
     "Brigadeiro chocolate",
     ["leite condensado", "chocolate", "manteiga"],
-    "cozir/ferver"
+    "cozir/ferver",
   ),
   new Receita(
     "Brigadeiro branco",
     ["leite condensado", "creme de leite", "manteiga"],
-    "cozir/ferver"
+    "cozir/ferver",
   ),
   new Receita(
     "Frango frito",
     ["frango", "alho", "ovos", "farinha de rosca"],
-    "fritar"
+    "fritar",
   ),
-];
-
-// INGREDIENTES
-const INGREDIENTES = [
-  "espaguete",
-  "feijao",
-  "arroz",
-  "farinha",
-  "ovos",
-  "queijo",
-  "carne",
-  "tomate",
-  "oregano",
-  "cenouras",
-  "chocolate",
-  "bacon",
-  "louro",
-  "alho",
-  "pimentao",
-  "salsicha",
-  "alface",
-  "maionese",
-  "frango",
-  "leite",
-  "fermento",
-  "canela em po",
-  "sagu",
-  "vinho",
-  "leite condensado",
-  "creme de leite",
-  "manteiga",
-  "agua",
-  "farinha de rosca",
-  "batata",
-  "cebola",
-  "sal",
 ];
 
 // funcao de preparo
 function preparar() {
   let falaringredientes = prompt(
-    "Preparando um prato registrado! Digite os ingredientes (os separe por virgula):"
+    "Preparando um prato do cardapio! Digite os ingredientes (os separe por virgula):",
   );
   if (!falaringredientes) return;
+
+  let Qalmodopreparo = prompt(
+    "Qual vai ser o modo de preparo?(fritar, assar ou cozir/ferver)",
+  );
+  if (!Qalmodopreparo) return;
 
   let ingredientesDigitados = falaringredientes
     .toLowerCase()
     .split(",")
     .map((item) => item.trim());
 
+  let mododigitado = Qalmodopreparo.toLowerCase().trim();
+
   let receitaEncontrada = listaReceitas.find((receita) => {
+    let modoDreceita = receita.modoDePreparo.toLowerCase();
+    let modocompativelaa =
+      modoDreceita === mododigitado ||
+      (modoDreceita.includes("ferver") && mododigitado.includes("ferver")) ||
+      (modoDreceita.includes("cozir") && mododigitado.includes("cozir"));
+
     return (
       receita.ingredientes.every((ing) =>
-        ingredientesDigitados.includes(ing)
-      ) && receita.ingredientes.length === ingredientesDigitados.length
+        ingredientesDigitados.includes(ing),
+      ) &&
+      receita.ingredientes.length === ingredientesDigitados.length &&
+      modocompativelaa
     );
   });
 
@@ -182,10 +161,10 @@ function preparar() {
 function novoPrato() {
   let nomedoPrato = prompt("Qual vai ser o nome do seu prato?:");
   let ingredientesNovoPrato = prompt(
-    "Quais serao os ingredientes do seu prato?:"
+    "Quais serao os ingredientes do seu prato?:",
   );
   let modopreparonovoprato = prompt(
-    "Qual sera o modo de preparo do seu prato?:"
+    "Qual sera o modo de preparo do seu prato?:",
   );
   if (!nomedoPrato || !ingredientesNovoPrato || !modopreparonovoprato) {
     alert("Faltou digitar algo!");
@@ -198,7 +177,7 @@ function novoPrato() {
   let novaReceitaCriada = new Receita(
     nomedoPrato,
     ingredientesArray,
-    modopreparonovoprato
+    modopreparonovoprato,
   );
 
   listaReceitas.push(novaReceitaCriada);
@@ -209,10 +188,20 @@ function novoPrato() {
 // INICIO DO JOGO
 alert("Inicio de jogo!");
 let acao = 0;
-while (acao !== 4 && acao !== null) {
-  acao = parseIntprompt(
-    "O que deseja fazer?\n1. Iniciar (digitar ingredientes)\n2. Ver Receitas\n3. Criar receita\n4. Cancelar"
+while (acao !== 4) {
+  let input = prompt(
+    `O que deseja fazer?
+1. Iniciar (digitar ingredientes)
+2. Ver Receitas
+3. Criar receita
+4. Cancelar`,
   );
+  if (input === null) {
+    alert("Voce encerrou o jogo! Fim!");
+    break;
+  }
+
+  acao = parseInt(input);
 
   if (acao == 1) {
     preparar();
@@ -221,7 +210,7 @@ while (acao !== 4 && acao !== null) {
     listaReceitas.forEach((receita) => receita.verReceita());
   } else if (acao == 3) {
     novoPrato();
-  } else if (acao == 4 || acao === null) {
+  } else if (acao == 4) {
     alert("Voce encerrou o jogo! Fim!");
   } else {
     alert("Entrada invalida! Tente novamente.");
